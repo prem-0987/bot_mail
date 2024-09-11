@@ -1,0 +1,66 @@
+
+{% extends "user_layout.html" %}
+{% block content %}
+
+<body onload="redirect()">
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Compose Mail</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/user_dashboard">Home</a></li>
+          <li class="breadcrumb-item active">Compose Message</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <div class="col-12">
+          <form action="/user_send_mail" method="post">
+            <div class="card">
+              <div class="card-header bg-success-subtle fw-semibold fs-6 text-dark mb-3">
+                New Message
+              </div>
+              <div class="card-body">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">TO</span>
+                  <input type="text" class="form-control" name="receiver" aria-label="Username" value="{{receiver}}" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Subject</span>
+                  <input type="text" class="form-control" name="subject" aria-label="Username" value="{{subject}}" aria-describedby="basic-addon1">
+                </div>
+                
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Message</span>
+                  <textarea class="form-control" name="message" aria-label="Username" aria-describedby="basic-addon1">{{message}}</textarea>
+                </div>
+                
+                <div>
+                  <button type="submit" class="btn btn-success">Send</button>
+                </div>
+                
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+  <script>
+    function redirect () {
+       setTimeout("myURL()", 2000);
+    }
+    function myURL() {
+       window.location.href = '/user_compose_mail?rec = {{receiver}}& sub = {{subject}}& message = {{message}}';
+    }
+</script>
+</body>
+{% endblock %}
+  

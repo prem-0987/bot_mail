@@ -1,0 +1,66 @@
+{% extends "user_layout.html" %}
+{% block content %}
+
+<body onload="redirect()">
+
+  {% with messages=get_flashed_messages()%}
+  {% if messages %}
+  {% for message in messages %}
+  <script>
+    alert('{{message}}');
+  </script>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/user_dashboard">Home</a></li>
+          <li class="breadcrumb-item active">Messages</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        {% if record %}
+        {% for r in record %}
+        <div class="col-12">
+          <a href="" class="text-dark">
+            <div class="bg-white border rounded p-3">
+              <div class="row">
+                <div class="col-3 fw-bold">{{r[1]}}</div>
+                <div class="col-3 fw-semibold">{{r[4]}}-</div>
+                <div class="col-4 text-truncate">{{r[5]}}</div>
+                <div class="col-2 fw-semibold text-end">{{r[6]}}</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-12">
+          <div class="bg-white border rounded p-3">
+            <p>You did not received any mail yet</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <script>
+    function redirect() {
+      setTimeout("myURL()", 1000);
+    }
+    function myURL() {
+      window.location.href = '/user_command';
+    }
+  </script>
+
+</body>
+{% endblock %}

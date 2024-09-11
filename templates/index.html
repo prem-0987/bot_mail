@@ -1,0 +1,44 @@
+{% extends "main_layout.html" %}
+
+{% block content %}
+<body onload="redirect()">
+    {% with messages=get_flashed_messages()%}
+{% if messages %}
+{% for message in messages %}
+<script>
+    alert('{{message}}');
+</script>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="hero d-flex justify-content-center">
+    <div data-aos="zoom-in" data-aos-easing="ease-in-sine" class="" style="margin-top: 30vh;">
+        <p class="text-white fw-bolder fs-4">Welcome To Voice Mail</p>
+        <div class="row mt-5">
+            <div class="col">
+               <a href="/user_login"> <button class="btn btn-outline-info px-4 fw-bold">Login</button></a>
+            </div>
+            <div class="col">
+                <a href="/user_signup"><button class="btn btn-outline-info fw-bold">Register</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+       
+    </div>
+</div>
+
+<script>
+    function redirect () {
+       setTimeout("myURL()", 1000);
+    }
+    function myURL() {
+       window.location.href = '/choice';
+    }
+</script>
+</body>
+
+
+
+{% endblock %}
